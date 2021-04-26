@@ -35,8 +35,8 @@ install.packages("controller")
 
 A common data-tidying problem is standardising variant terms for the
 same concept. Imagine we have a dataset that uses a number of different
-names for shades of the same colour. As data analysts, we want recode
-the data to eliminate this messy creativity, for example using
+names for shades of the same colour. As data analysts, we naturally want
+to recode the data to eliminate this messy creativity, for example using
 [dplyr::recode()](https://dplyr.tidyverse.org/reference/recode.html):
 
 ``` r
