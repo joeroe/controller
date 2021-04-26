@@ -50,12 +50,12 @@ yellow	mustard
 yellow	corn
 yellow	medallion
 yellow	dandelion
-yellow	fire
+yellow	fire yellow
 yellow	bumblebee
 yellow	banana
 yellow	butterscotch
 yellow	dijon
-yellow	honey
+yellow	honey yellow
 yellow	blonde
 yellow	pineapple
 yellow	tuscan sun
@@ -66,12 +66,12 @@ orange	cider
 orange	rust
 orange	ginger
 orange	tiger
-orange	fire
+orange	fire orange
 orange	bronze
 orange	cantaloupe
 orange	apricot
 orange	clay
-orange	honey
+orange	honey orange
 orange	carrot
 orange	squash
 orange	spice
@@ -81,8 +81,8 @@ orange	sandstone
 orange	yam
 red	red
 red	cherry
-red	rose
-red	jam
+red	rose red
+red	jam red
 red	merlot
 red	garnet
 red	crimson
@@ -96,14 +96,14 @@ red	blood
 red	sangria
 red	berry
 red	currant
-red	blush
+red	blush red
 red	candy
 red	lipstick
 pink	pink
-pink	rose
+pink	rose pink
 pink	fuchsia
 pink	punch
-pink	blush
+pink	blush pink
 pink	watermelon
 pink	flamingo
 pink	rouge
@@ -117,7 +117,7 @@ pink	taffy
 pink	bubblegum
 pink	ballet slipper
 pink	crepe
-pink	magenta
+pink	pink-magenta
 pink	hot pink
 purple	purple
 purple	mauve
@@ -125,7 +125,7 @@ purple	violet
 purple	boysenberry
 purple	lavender
 purple	plum
-purple	magenta
+purple	purple-magenta
 purple	lilac
 purple	grape
 purple	periwinkle
@@ -138,9 +138,9 @@ purple	amethyst
 purple	raisin
 purple	orchid
 purple	mulberry
-purple	wine
+purple	purple wine
 blue	blue
-blue	slate
+blue	slate blue
 blue	sky
 blue	navy
 blue	indigo
@@ -154,7 +154,7 @@ blue	lapis
 blue	spruce
 blue	stone
 blue	aegean
-blue	berry
+blue	berry blue
 blue	denim
 blue	admiral
 blue	sapphire
@@ -222,7 +222,7 @@ grey	fossil
 black	black
 black	ebony
 black	crow
-black	charcoal
+black	charcoal black
 black	midnight
 black	ink
 black	raven

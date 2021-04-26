@@ -3,9 +3,9 @@
 
 #' Colour thesaurus
 #'
-#' A dataset of colour names compiled by Ingrid Sundberg, formatted as an
-#' example thesaurus for use in [control()]. Contains 240 names for shades of
-#' 12 colours.
+#' A dataset of colour names based on Ingrid Sundberg's "colour thesaurus".
+#' Contains 240 names for shades of 12 colours, formatted for use as a thesaurus
+#' in [control()].
 #'
 #' @format A data frame with 240 rows and 2 variables:
 #' \describe{

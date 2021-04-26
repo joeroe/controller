@@ -97,6 +97,8 @@ control <- function(x, thesaurus,
   controlled <- dplyr::relocate(controlled, !.data$term)
   controlled$match <- do.call(dplyr::coalesce, controlled)
 
+  # TODO: detect ambiguous matches and warn or error
+
   # Inform
   if (isFALSE(quiet)) {
     replaced <- controlled[controlled$term != controlled$match,]
