@@ -120,7 +120,8 @@ control <- function(x, thesaurus,
     if (length(unmatched) > 0) {
       names(unmatched) <- rep("x", length(unmatched))
       rlang::warn(
-        c("Some values of `x` were not matched in `thesaurus`:", unmatched)
+        c("Some values of `x` were not matched in `thesaurus`:", unmatched),
+        class = "controller_incomplete_control"
       )
     }
   }
