@@ -18,3 +18,9 @@ Reads controlled vocabularies from Historic England's FISH (Forum on
 Information Standards in Heritage) group. These can be downloaded from:
 \url{http://www.heritage-standards.org.uk/fish-vocabularies/}.
 }
+\references{
+\itemize{
+\item Forum on Information Standards in Heritage, "FISH Thesaurus Table Structure",
+Available from: \url{http://www.heritage-standards.org.uk/fish-vocabularies/}.
+}
+}

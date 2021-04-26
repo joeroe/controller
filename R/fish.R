@@ -14,6 +14,10 @@
 #' @return
 #' A data frame with two columns: `preferred` and `term`.
 #'
+#' @references
+#' * Forum on Information Standards in Heritage, "FISH Thesaurus Table Structure",
+#'   Available from: <http://www.heritage-standards.org.uk/fish-vocabularies/>.
+#'
 #' @export
 #'
 #' @examples
