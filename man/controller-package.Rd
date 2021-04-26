@@ -9,6 +9,14 @@
 Functions for working with controlled vocabularies and authority
     control.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/joeroe/controller}
+  \item Report bugs at \url{https://github.com/joeroe/controller/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Joe Roe \email{joe@joeroe.io} (\href{https://orcid.org/0000-0002-1011-1244}{ORCID})
 
