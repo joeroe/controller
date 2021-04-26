@@ -47,6 +47,19 @@
 #' @export
 #'
 #' @examples
+#' data(colour_thesaurus)
+#'
+#' # Exact matching
+#' x <- c("red", "lipstick", "green", "mint", "blue", "azure")
+#' control(x, colour_thesaurus)
+#'
+#' # Case insensitive matching
+#' x <- toupper(x)
+#' control_ci(x, colour_thesaurus)
+#'
+#' # coalesce = FALSE returns all matches as a data frame, which can be useful
+#' # for debugging:
+#' control(x, colour_thesaurus, case_insensitive = TRUE, coalesce = FALSE)
 control <- function(x, thesaurus,
                     case_insensitive = FALSE,
                     fuzzy_boundary = FALSE,

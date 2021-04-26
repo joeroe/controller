@@ -71,3 +71,18 @@ matching strategies (see details). \code{control_ci()} and \code{control_fuzzy()
 convenience aliases for case insensitive exact matching and full fuzzy
 matching respectively.
 }
+\examples{
+data(colour_thesaurus)
+
+# Exact matching
+x <- c("red", "lipstick", "green", "mint", "blue", "azure")
+control(x, colour_thesaurus)
+
+# Case insensitive matching
+x <- toupper(x)
+control_ci(x, colour_thesaurus)
+
+# coalesce = FALSE returns all matches as a data frame, which can be useful
+# for debugging:
+control(x, colour_thesaurus, case_insensitive = TRUE, coalesce = FALSE)
+}
