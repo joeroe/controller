@@ -68,6 +68,7 @@ control <- function(x, thesaurus,
                     warn_unmatched = TRUE,
                     coalesce = TRUE) {
   controlled <- data.frame(term = unique(x))
+  # TODO: Validate thesaurus
   names(thesaurus) <- c("canon", "exact")
 
   # Exact matching
