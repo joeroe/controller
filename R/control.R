@@ -68,7 +68,7 @@ control <- function(x, thesaurus,
                     warn_unmatched = TRUE,
                     coalesce = TRUE) {
   controlled <- data.frame(term = unique(x))
-  # TODO: Validate thesaurus
+  # TODO: Validate thesaurus (#1)
   names(thesaurus) <- c("canon", "exact")
 
   # Exact matching
@@ -80,16 +80,14 @@ control <- function(x, thesaurus,
                                                          tolower(thesaurus$exact))]
   }
 
-  # Fuzzy boundary matching
+  # TODO: Fuzzy boundary matching (#2)
   if (isTRUE(fuzzy_boundary)) {
-    # TODO
     rlang::abort("Sorry, fuzzy boundary matching is not yet implemented!",
                  class = "controller_not_implemented")
   }
 
-  # Fuzzy encoding matching
+  # Fuzzy encoding matching (#3)
   if (isTRUE(fuzzy_encoding)) {
-    # TODO
     rlang::abort("Sorry, fuzzy encoding matching is not yet implemented!",
                  class = "controller_not_implemented")
   }
@@ -98,7 +96,7 @@ control <- function(x, thesaurus,
   controlled <- dplyr::relocate(controlled, !.data$term)
   controlled$match <- do.call(dplyr::coalesce, controlled)
 
-  # TODO: detect ambiguous matches and warn or error
+  # TODO: detect ambiguous matches and warn or error (#4)
 
   # Inform
   if (isFALSE(quiet)) {
