@@ -3,3 +3,4 @@
 export(control)
 export(control_ci)
 export(control_fuzzy)
+importFrom(rlang,.data)
