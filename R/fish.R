@@ -23,7 +23,7 @@ read_fish <- function(path) {
   }
 
   if (isTRUE(fs::file_exists(path)) && isTRUE(fs::path_ext(path) == "zip")) {
-    files <- unzip(path, exdir = fs::path_temp())
+    files <- utils::unzip(path, exdir = fs::path_temp())
   }
   else if (isTRUE(fs::file_exists(path)) && isTRUE(fs::is_dir(path))) {
     files <- fs::dir_ls(path)
@@ -34,8 +34,8 @@ read_fish <- function(path) {
   }
 
   names(files) <- fs::path_ext_remove(fs::path_file(files))
-  terms <- read.csv(files["thesaurus_terms"])
-  preferred <- read.csv(files["thesaurus_term_preferences"])
+  terms <- utils::read.csv(files["thesaurus_terms"])
+  preferred <- utils::read.csv(files["thesaurus_term_preferences"])
 
   data.frame(
     preferred = terms$TERM[match(preferred$THE_TE_UID_2, terms$THE_TE_UID)],
