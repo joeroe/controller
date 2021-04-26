@@ -23,5 +23,6 @@ Depends:
 URL: https://github.com/joeroe/controller
 BugReports: https://github.com/joeroe/controller/issues
 Suggests: 
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

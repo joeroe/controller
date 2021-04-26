@@ -8,6 +8,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R-CMD-check](https://github.com/joeroe/controller/workflows/R-CMD-check/badge.svg)](https://github.com/joeroe/controller/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/joeroe/controller/branch/main/graph/badge.svg)](https://codecov.io/gh/joeroe/controller?branch=main)
 <!-- badges: end -->
 
 **controller** is a collection of functions for working with controlled
