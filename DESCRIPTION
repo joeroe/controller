@@ -16,7 +16,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 version: 0.0.0.9000
 Imports: 
+    curl,
     dplyr,
+    fs,
     rlang
 Depends: 
     R (>= 2.10)

@@ -3,4 +3,5 @@
 export(control)
 export(control_ci)
 export(control_fuzzy)
+export(read_fish)
 importFrom(rlang,.data)
