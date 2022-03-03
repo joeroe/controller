@@ -6,8 +6,7 @@
 \alias{controller-package}
 \title{controller: Controlled Vocabularies and Authority Control}
 \description{
-Functions for working with controlled vocabularies and authority
-    control.
+Functions for working with controlled vocabularies and authority control.
 }
 \seealso{
 Useful links:
