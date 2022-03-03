@@ -67,6 +67,10 @@ control <- function(x, thesaurus,
                     quiet = FALSE,
                     warn_unmatched = TRUE,
                     coalesce = TRUE) {
+  if (!is.vector(x)) {
+    rlang::abort("`x` must be a vector.")
+  }
+
   controlled <- data.frame(term = unique(x))
   # TODO: Validate thesaurus (#1)
   names(thesaurus) <- c("canon", "exact")
