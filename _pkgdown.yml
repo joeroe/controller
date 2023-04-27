@@ -1,0 +1,26 @@
+url: https://controller.joeroe.io
+
+authors:
+  Joe Roe:
+    href: https://joeroe.io
+
+template:
+  bootstrap: 5
+  opengraph:
+    twitter:
+      creator: '@joeroe90'
+      card: summary
+
+reference:
+
+- title: Control verb
+- contents:
+  - starts_with("control")
+
+- title: Read controlled vocabularies
+- contents:
+  - read_fish
+
+- title: Datasets
+- contents:
+  - colour_thesaurus
