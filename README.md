@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R-CMD-check](https://github.com/joeroe/controller/workflows/R-CMD-check/badge.svg)](https://github.com/joeroe/controller/actions)
+[![R-CMD-check](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/joeroe/controller/branch/main/graph/badge.svg)](https://codecov.io/gh/joeroe/controller?branch=main)
 <!-- badges: end -->
@@ -28,8 +28,7 @@ remotes::install_github("joeroe/controller")
 
 <!--
 You can install the released version of controller from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
+&#10;``` r
 install.packages("controller")
 ```
 -->
@@ -67,11 +66,12 @@ data("colour_thesaurus")
 control(shades, colour_thesaurus)
 #> Replaced values:
 #> ℹ daffodil → yellow
-#> ℹ magenta → pink
 #> ℹ azure → blue
 #> ℹ navy → blue
 #> ℹ violet → purple
-#> [1] "yellow" "purple" "pink"   "blue"   "blue"   "purple"
+#> Warning: Some values of `x` were not matched in `thesaurus`:
+#> ✖ magenta
+#> [1] "yellow"  "purple"  "magenta" "blue"    "blue"    "purple"
 ```
 
 `control()` also supports fuzzy matching, removing the need to
@@ -84,9 +84,10 @@ control_ci(shades, colour_thesaurus)
 #> Replaced values:
 #> ℹ DAFFODIL → yellow
 #> ℹ PURPLE → purple
-#> ℹ MAGENTA → pink
 #> ℹ AZURE → blue
 #> ℹ NAVY → blue
 #> ℹ VIOLET → purple
-#> [1] "yellow" "purple" "pink"   "blue"   "blue"   "purple"
+#> Warning: Some values of `x` were not matched in `thesaurus`:
+#> ✖ MAGENTA
+#> [1] "yellow"  "purple"  "MAGENTA" "blue"    "blue"    "purple"
 ```
