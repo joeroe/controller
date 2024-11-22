@@ -8,10 +8,6 @@ template:
   bootstrap: 5
   includes:
     in_header: '<script async src="https://umami.joeroe.io/script.js" data-website-id="91288a4c-392d-4693-a467-7d832d73b872"></script>'
-  opengraph:
-    twitter:
-      creator: '@joeroe90'
-      card: summary
 
 reference:
 
