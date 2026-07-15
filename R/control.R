@@ -35,10 +35,11 @@
 #' @return
 #' If `coalesce = TRUE` (the default), a vector the same length as `x` with
 #' values matching variants in `thesaurus` replaced with the preferred term.
+#' NAs in `x` are preserved as NAs.
 #'
 #' If `coalesce = FALSE`, a data frame with the same number of rows as `x`, and
 #' columns for each type of match (e.g. `exact`, `case_insensitive`,
-#' `fuzzy_boundary`, `fuzzy_encoding`).
+#' `fuzzy_boundary`, `fuzzy_encoding`). Rows for NA values in `x` are all NAs.
 #'
 #' By default gives a message listing replaced values and a warning listing any
 #' values not matched in the thesaurus. These can be suppressed with
@@ -71,7 +72,7 @@ control <- function(x, thesaurus,
     rlang::abort("`x` must be a vector.")
   }
 
-  controlled <- data.frame(term = unique(x))
+  controlled <- data.frame(term = unique(x[!is.na(x)]))
   # TODO: Validate thesaurus (#1)
   names(thesaurus) <- c("canon", "exact")
 
@@ -132,11 +133,11 @@ control <- function(x, thesaurus,
   # Return match(es)
   if (isTRUE(coalesce)) {
     controlled <- controlled$match[match(x, controlled$term)]
+    controlled[is.na(x)] <- NA
   }
   else {
-    controlled <- controlled[match(x, controlled$term),
-                             !colnames(controlled) %in% c("term", "match"),
-                             drop = FALSE]
+    match_types <- controlled[, !colnames(controlled) %in% c("term", "match"), drop = FALSE]
+    controlled <- match_types[match(x, controlled$term), , drop = FALSE]
     row.names(controlled) <- NULL
   }
 

@@ -50,10 +50,11 @@ that couldn't be matched in \code{thesaurus}.}
 \value{
 If \code{coalesce = TRUE} (the default), a vector the same length as \code{x} with
 values matching variants in \code{thesaurus} replaced with the preferred term.
+NAs in \code{x} are preserved as NAs.
 
 If \code{coalesce = FALSE}, a data frame with the same number of rows as \code{x}, and
 columns for each type of match (e.g. \code{exact}, \code{case_insensitive},
-\code{fuzzy_boundary}, \code{fuzzy_encoding}).
+\code{fuzzy_boundary}, \code{fuzzy_encoding}). Rows for NA values in \code{x} are all NAs.
 
 By default gives a message listing replaced values and a warning listing any
 values not matched in the thesaurus. These can be suppressed with

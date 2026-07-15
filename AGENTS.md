@@ -15,3 +15,6 @@
 * Clarity over concision. Spell out whole words when naming functions. Avoid
   acronyms and abbreviations. E.g. `cal_function()` not `cal_fn` or `cal_func`.
 * Helper functions should be placed below the functions that call them.
+* Run `devtools::test()` after you are finished making changes
+  * Do not run `devtools::check()` or `R CMD check` unless you are specifically
+    fixing an R CMD check error, warning, or note
