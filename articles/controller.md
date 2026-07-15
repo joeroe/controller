@@ -72,22 +72,46 @@ case insensitive match to the thesaurus:
 ``` r
 
 shades_ci <- toupper(shades)
-control_ci(shades, colour_thesaurus)
+control_ci(shades_ci, colour_thesaurus)
 #> Replaced values:
-#> ℹ daffodil → yellow
-#> ℹ azure → blue
-#> ℹ navy → blue
-#> ℹ violet → purple
+#> ℹ DAFFODIL → yellow
+#> ℹ PURPLE → purple
+#> ℹ AZURE → blue
+#> ℹ NAVY → blue
+#> ℹ VIOLET → purple
 #> Warning: Some values of `x` were not matched in `thesaurus`:
-#> ✖ magenta
-#> [1] "yellow"  "purple"  "magenta" "blue"    "blue"    "purple"
+#> ✖ MAGENTA
+#> [1] "yellow"  "purple"  "MAGENTA" "blue"    "blue"    "purple"
 ```
 
 [`control_fuzzy()`](https://controller.joeroe.io/reference/control.md)
-goes further by also ignoring differences in word boundaries
-(e.g. `"foo bar"` vs. `"foo-bar"`) and character encoding (e.g. `"foo"`
-vs. `"foö"`). These features are not yet implemented, but are planned
-for a future release.
+goes further by also ignoring differences in word boundaries and
+character encoding. Fuzzy boundary matching treats word boundaries like
+spaces, hyphens, and underscores as equivalent:
+
+``` r
+
+df <- data.frame(preferred = "foo bar", variant = "foo-bar")
+control(c("foo bar", "foo_bar", "foobar"), df,
+        fuzzy_boundary = TRUE, quiet = FALSE)
+#> Replaced values:
+#> ℹ foo_bar → foo bar
+#> ℹ foobar → foo bar
+#> [1] "foo bar" "foo bar" "foo bar"
+```
+
+Fuzzy encoding matching ignores non-ASCII characters, so plain ASCII
+input can match variants with diacritics or wrongly encoded characters
+(‘mojibake’):
+
+``` r
+
+df <- data.frame(preferred = "bar", variant = "fo\u00f6")
+control("foo", df, fuzzy_encoding = TRUE, quiet = FALSE)
+#> Replaced values:
+#> ℹ foo → bar
+#> [1] "bar"
+```
 
 To inspect which type of match was used for each value, set
 `coalesce = FALSE`. This returns a data frame with a column for each

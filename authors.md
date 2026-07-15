@@ -10,11 +10,11 @@
 Source:
 [`DESCRIPTION`](https://github.com/joeroe/controller/blob/main/DESCRIPTION)
 
-Roe J (2026). *controller: Controlled Vocabularies and Authority
-Control*. R package version 0.0.0.9000, <https://controller.joeroe.io>.
+Roe J (2026). *controller: Controlled Vocabularies*. R package version
+0.0.0.9000, <https://controller.joeroe.io>.
 
     @Manual{,
-      title = {controller: Controlled Vocabularies and Authority Control},
+      title = {controller: Controlled Vocabularies},
       author = {Joe Roe},
       year = {2026},
       note = {R package version 0.0.0.9000},

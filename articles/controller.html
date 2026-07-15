@@ -121,24 +121,41 @@ terminology. For example, to perform a case insensitive match to the
 thesaurus:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">shades_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">shades</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/control.html">control_ci</a></span><span class="op">(</span><span class="va">shades</span>, <span class="va">colour_thesaurus</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/control.html">control_ci</a></span><span class="op">(</span><span class="va">shades_ci</span>, <span class="va">colour_thesaurus</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Replaced values:</span></span>
-<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> daffodil → yellow</span></span>
-<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> azure → blue</span></span>
-<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> navy → blue</span></span>
-<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> violet → purple</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DAFFODIL → yellow</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PURPLE → purple</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> AZURE → blue</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> NAVY → blue</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> VIOLET → purple</span></span>
 <span><span class="co">#&gt; Warning: Some values of `x` were not matched in `thesaurus`:</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> magenta</span></span>
-<span><span class="co">#&gt; [1] "yellow"  "purple"  "magenta" "blue"    "blue"    "purple"</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> MAGENTA</span></span>
+<span><span class="co">#&gt; [1] "yellow"  "purple"  "MAGENTA" "blue"    "blue"    "purple"</span></span></code></pre></div>
 <p><code><a href="../reference/control.html">control_fuzzy()</a></code> goes further by also ignoring
-differences in word boundaries (e.g. <code>"foo bar"</code>
-vs. <code>"foo-bar"</code>) and character encoding
-(e.g. <code>"foo"</code> vs. <code>"foö"</code>). These features are not
-yet implemented, but are planned for a future release.</p>
+differences in word boundaries and character encoding. Fuzzy boundary
+matching treats word boundaries like spaces, hyphens, and underscores as
+equivalent:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>preferred <span class="op">=</span> <span class="st">"foo bar"</span>, variant <span class="op">=</span> <span class="st">"foo-bar"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/control.html">control</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo bar"</span>, <span class="st">"foo_bar"</span>, <span class="st">"foobar"</span><span class="op">)</span>, <span class="va">df</span>,</span>
+<span>        fuzzy_boundary <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Replaced values:</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> foo_bar → foo bar</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> foobar → foo bar</span></span>
+<span><span class="co">#&gt; [1] "foo bar" "foo bar" "foo bar"</span></span></code></pre></div>
+<p>Fuzzy encoding matching ignores non-ASCII characters, so plain ASCII
+input can match variants with diacritics or wrongly encoded characters
+(‘mojibake’):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>preferred <span class="op">=</span> <span class="st">"bar"</span>, variant <span class="op">=</span> <span class="st">"fo\u00f6"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/control.html">control</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="va">df</span>, fuzzy_encoding <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Replaced values:</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> foo → bar</span></span>
+<span><span class="co">#&gt; [1] "bar"</span></span></code></pre></div>
 <p>To inspect which type of match was used for each value, set
 <code>coalesce = FALSE</code>. This returns a data frame with a column
 for each match type, rather than a single vector:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/control.html">control</a></span><span class="op">(</span><span class="va">shades_ci</span>, <span class="va">colour_thesaurus</span>,</span>
 <span>        case_insensitive <span class="op">=</span> <span class="cn">TRUE</span>, coalesce <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Replaced values:</span></span>
@@ -166,7 +183,7 @@ one preferred term. The variants must be unique values – otherwise they
 cannot be unambiguously matched to a preferred term.</p>
 <p><code>colour_thesaurus</code>,<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;Compiled by Ingrid Sundberg, &lt;a href="https://web.archive.org/web/20250619164626/https://ingridsundberg.com/2014/02/04/the-color-thesaurus/" class="external-link uri"&gt;https://web.archive.org/web/20250619164626/https://ingridsundberg.com/2014/02/04/the-color-thesaurus/&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a> used in the examples above, is an example
 of a thesaurus bundled with the package:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">colour_thesaurus</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   colour     shade</span></span>
 <span><span class="co">#&gt; 1  white     white</span></span>
@@ -177,7 +194,7 @@ of a thesaurus bundled with the package:</p>
 <span><span class="co">#&gt; 6  white     cream</span></span></code></pre></div>
 <p>Because a thesaurus is simply a data frame, it can be created or read
 into R with standard tools:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_thesaurus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  preferred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"feline"</span>, <span class="st">"canine"</span><span class="op">)</span>,</span>
 <span>  variant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"dog"</span><span class="op">)</span></span>
@@ -194,7 +211,7 @@ into R with standard tools:</p>
 <p>Use the <code>thesaurus_cols</code> argument to specify which columns
 of the data frame contain the preferred and variant terms
 respectively:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_wider_thesaurus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FEL"</span>, <span class="st">"CAN"</span><span class="op">)</span>,</span>
 <span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"feline"</span>, <span class="st">"canine"</span><span class="op">)</span>,</span>
@@ -213,7 +230,7 @@ England’s <a href="https://www.heritage-standards.org.uk/fish-vocabularies/" c
 (Forum on Information Standards in Heritage) format using
 <code><a href="../reference/read_fish.html">read_fish()</a></code>. The <code>path</code> argument can be a local
 <code>.zip</code> file, an uncompressed directory, or a URL:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nationality_zip</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"fish-nationality.zip"</span>,</span>
 <span>                               package <span class="op">=</span> <span class="st">"controller"</span><span class="op">)</span></span>
 <span><span class="va">fish_nationality</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_fish.html">read_fish</a></span><span class="op">(</span><span class="va">nationality_zip</span><span class="op">)</span></span>
