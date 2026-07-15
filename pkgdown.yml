@@ -1,8 +1,9 @@
 pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2026-07-15T23:00Z
+articles:
+  controller: controller.html
+last_built: 2026-07-15T23:38Z
 urls:
   reference: https://controller.joeroe.io/reference
   article: https://controller.joeroe.io/articles

@@ -99,3 +99,9 @@ control_ci(shades, colour_thesaurus)
 - [`colour_thesaurus`](https://controller.joeroe.io/reference/colour_thesaurus.md)
   : Colour thesaurus
 
+# Articles
+
+### All vignettes
+
+- [Controlled
+  vocabularies](https://controller.joeroe.io/articles/controller.md):

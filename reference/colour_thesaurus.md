@@ -27,4 +27,5 @@ A data frame with 240 rows and 2 variables:
 
 ## Source
 
-<https://ingridsundberg.com/2014/02/04/the-color-thesaurus/>
+Ingrid Sundberg
+(<https://web.archive.org/web/20250619164626/https://ingridsundberg.com/2014/02/04/the-color-thesaurus/>)

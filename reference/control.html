@@ -31,7 +31,8 @@ matching respectively."><script async src="https://umami.joeroe.io/script.js" da
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/controller.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -66,6 +67,7 @@ matching respectively.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">control</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">thesaurus</span>,</span>
+<span>  thesaurus_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  case_insensitive <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fuzzy_boundary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fuzzy_encoding <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -74,9 +76,9 @@ matching respectively.</p>
 <span>  coalesce <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">control_ci</span><span class="op">(</span><span class="va">x</span>, <span class="va">thesaurus</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">control_ci</span><span class="op">(</span><span class="va">x</span>, <span class="va">thesaurus</span>, thesaurus_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">control_fuzzy</span><span class="op">(</span><span class="va">x</span>, <span class="va">thesaurus</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">control_fuzzy</span><span class="op">(</span><span class="va">x</span>, <span class="va">thesaurus</span>, thesaurus_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -88,8 +90,14 @@ matching respectively.</p>
 
 
 <dt id="arg-thesaurus">thesaurus<a class="anchor" aria-label="anchor" href="#arg-thesaurus"></a></dt>
-<dd><p>Data frame with two columns: a vector of preferred terms,
-and a vector of variants.</p></dd>
+<dd><p>Data frame with a vector of preferred terms and a vector of
+variants.</p></dd>
+
+
+<dt id="arg-thesaurus-cols">thesaurus_cols<a class="anchor" aria-label="anchor" href="#arg-thesaurus-cols"></a></dt>
+<dd><p>Vector of two column names or positions specifying which
+columns in <code>thesaurus</code> contain the preferred terms and variants
+respectively. Defaults to the first two columns.</p></dd>
 
 
 <dt id="arg-case-insensitive">case_insensitive<a class="anchor" aria-label="anchor" href="#arg-case-insensitive"></a></dt>

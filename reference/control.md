@@ -19,6 +19,7 @@ matching and full fuzzy matching respectively.
 control(
   x,
   thesaurus,
+  thesaurus_cols = c(1, 2),
   case_insensitive = FALSE,
   fuzzy_boundary = FALSE,
   fuzzy_encoding = FALSE,
@@ -27,9 +28,9 @@ control(
   coalesce = TRUE
 )
 
-control_ci(x, thesaurus, ...)
+control_ci(x, thesaurus, thesaurus_cols = c(1, 2), ...)
 
-control_fuzzy(x, thesaurus, ...)
+control_fuzzy(x, thesaurus, thesaurus_cols = c(1, 2), ...)
 ```
 
 ## Arguments
@@ -40,8 +41,13 @@ control_fuzzy(x, thesaurus, ...)
 
 - thesaurus:
 
-  Data frame with two columns: a vector of preferred terms, and a vector
-  of variants.
+  Data frame with a vector of preferred terms and a vector of variants.
+
+- thesaurus_cols:
+
+  Vector of two column names or positions specifying which columns in
+  `thesaurus` contain the preferred terms and variants respectively.
+  Defaults to the first two columns.
 
 - case_insensitive:
 
