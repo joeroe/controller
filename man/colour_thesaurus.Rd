@@ -14,7 +14,7 @@ A data frame with 240 rows and 2 variables:
 }
 }
 \source{
-\url{https://ingridsundberg.com/2014/02/04/the-color-thesaurus/}
+Ingrid Sundberg (\url{https://web.archive.org/web/20250619164626/https://ingridsundberg.com/2014/02/04/the-color-thesaurus/})
 }
 \usage{
 colour_thesaurus

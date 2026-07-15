@@ -14,5 +14,6 @@
 #'   `"grey"`, or `"black"`}
 #'   \item{shade}{variant names for shades of `colour`}
 #' }
-#' @source \url{https://ingridsundberg.com/2014/02/04/the-color-thesaurus/}
+#' @source 
+#' Ingrid Sundberg (\url{https://web.archive.org/web/20250619164626/https://ingridsundberg.com/2014/02/04/the-color-thesaurus/})
 "colour_thesaurus"

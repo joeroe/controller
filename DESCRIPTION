@@ -25,6 +25,9 @@ URL: https://controller.joeroe.io, https://github.com/joeroe/controller
 BugReports: https://github.com/joeroe/controller/issues
 Suggests: 
     covr,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0
+VignetteBuilder: knitr
