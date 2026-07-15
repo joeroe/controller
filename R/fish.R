@@ -21,6 +21,10 @@
 #' @export
 #'
 #' @examples
+#' # Read a FISH vocabulary from a local zip file
+#' nationality_zip <- system.file("extdata", "fish-nationality.zip",
+#'                                package = "controller")
+#' read_fish(nationality_zip)
 read_fish <- function(path) {
   if(isTRUE(is_url(path)) && isTRUE(fs::path_ext(path) == "zip")) {
     path <- curl::curl_download(path, fs::file_temp(ext = "zip"))
@@ -37,9 +41,13 @@ read_fish <- function(path) {
                  class = "controller_read_error")
   }
 
-  names(files) <- fs::path_ext_remove(fs::path_file(files))
-  terms <- utils::read.csv(files["thesaurus_terms"])
-  preferred <- utils::read.csv(files["thesaurus_term_preferences"])
+  file_names <- fs::path_ext_remove(fs::path_file(files))
+
+  # Files have been observed with varying casing
+  normalized <- gsub("_", "", tolower(file_names))
+  names(files) <- normalized
+  terms <- utils::read.csv(files["thesaurusterms"])
+  preferred <- utils::read.csv(files["thesaurustermpreferences"])
 
   data.frame(
     preferred = terms$TERM[match(preferred$THE_TE_UID_2, terms$THE_TE_UID)],

@@ -16,11 +16,17 @@ A data frame with two columns: \code{preferred} and \code{term}.
 \description{
 Reads controlled vocabularies from Historic England's FISH (Forum on
 Information Standards in Heritage) group. These can be downloaded from:
-\url{http://www.heritage-standards.org.uk/fish-vocabularies/}.
+\url{https://www.heritage-standards.org.uk/fish-vocabularies/}.
+}
+\examples{
+# Read a FISH vocabulary from a local zip file
+nationality_zip <- system.file("extdata", "fish-nationality.zip",
+                               package = "controller")
+read_fish(nationality_zip)
 }
 \references{
 \itemize{
 \item Forum on Information Standards in Heritage, "FISH Thesaurus Table Structure",
-Available from: \url{http://www.heritage-standards.org.uk/fish-vocabularies/}.
+Available from: \url{https://www.heritage-standards.org.uk/fish-vocabularies/}.
 }
 }
