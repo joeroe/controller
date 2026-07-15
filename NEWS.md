@@ -1,5 +1,6 @@
 # controller 0.0.0.9000
 
-* Added `control()`
-* Added example dataset `colour_thesaurus`
-* Added a `NEWS.md` file to track changes to the package.
+* Adds `control()`
+* Adds example dataset `colour_thesaurus`
+* Adds `read_fish()`
+* Adds a `NEWS.md` file to track changes to the package.
