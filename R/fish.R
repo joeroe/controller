@@ -1,12 +1,12 @@
 # fish.R
 # Functions for Historic England's FISH controlled vocabularies
-# <http://www.heritage-standards.org.uk/fish-vocabularies/>
+# <https://www.heritage-standards.org.uk/fish-vocabularies/>
 
 #' Read a FISH controlled vocabulary
 #'
 #' Reads controlled vocabularies from Historic England's FISH (Forum on
 #' Information Standards in Heritage) group. These can be downloaded from:
-#' <http://www.heritage-standards.org.uk/fish-vocabularies/>.
+#' <https://www.heritage-standards.org.uk/fish-vocabularies/>.
 #'
 #' @param path Path or URL to a vocabulary in FISH's CSV format. Can be
 #'  either a `.zip` archive or a directory containing already uncompressed files.
@@ -16,7 +16,7 @@
 #'
 #' @references
 #' * Forum on Information Standards in Heritage, "FISH Thesaurus Table Structure",
-#'   Available from: <http://www.heritage-standards.org.uk/fish-vocabularies/>.
+#'   Available from: <https://www.heritage-standards.org.uk/fish-vocabularies/>.
 #'
 #' @export
 #'
