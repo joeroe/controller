@@ -1,5 +1,5 @@
 Package: controller
-Title: Controlled Vocabularies and Authority Control
+Title: Controlled Vocabularies
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Joe",
@@ -7,8 +7,12 @@ Authors@R:
            role = c("aut", "cre", "cph"),
            email = "joe@joeroe.io",
            comment = c(ORCID = "0000-0002-1011-1244"))
-Description: Functions for working with controlled vocabularies and authority
-    control.
+Description: Provides functions for working with controlled vocabularies.
+  A controlled vocabulary is a predefined set of terms intended to be used to 
+  be used in a specific context. This package introduces the 'control' verb, 
+  which recodes values in a vector using a lookup table of preferred and 
+  variant terms (a 'thesaurus'). It also includes functions for reading
+  controlled vocabularies into R from standard formats.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
