@@ -16,8 +16,11 @@
 #' matching respectively.
 #'
 #' @param x Vector to recode.
-#' @param thesaurus Data frame with two columns: a vector of preferred terms,
-#'   and a vector of variants.
+#' @param thesaurus Data frame with a vector of preferred terms and a vector of
+#'   variants.
+#' @param thesaurus_cols Vector of two column names or positions specifying which
+#'   columns in `thesaurus` contain the preferred terms and variants
+#'   respectively. Defaults to the first two columns.
 #' @param case_insensitive Set to `TRUE` to perform case insensitive matching.
 #' @param fuzzy_boundary Set to `TRUE` to perform fuzzy matching that ignores
 #'   differences in the word boundaries used (e.g. `"foo bar"` matches `"foo-bar"`).
@@ -62,6 +65,7 @@
 #' # for debugging:
 #' control(x, colour_thesaurus, case_insensitive = TRUE, coalesce = FALSE)
 control <- function(x, thesaurus,
+                    thesaurus_cols = c(1, 2),
                     case_insensitive = FALSE,
                     fuzzy_boundary = FALSE,
                     fuzzy_encoding = FALSE,
@@ -73,16 +77,17 @@ control <- function(x, thesaurus,
   }
 
   controlled <- data.frame(term = unique(x[!is.na(x)]))
-  # TODO: Validate thesaurus (#1)
-  names(thesaurus) <- c("canon", "exact")
+  thesaurus <- as.data.frame(thesaurus)[, thesaurus_cols, drop = FALSE]
+  validate_thesaurus(thesaurus)
+  names(thesaurus) <- c("canon", "variant")
 
   # Exact matching
-  controlled$exact <- thesaurus$canon[match(controlled$term, thesaurus$exact)]
+  controlled$exact <- thesaurus$canon[match(controlled$term, thesaurus$variant)]
 
   # Case insensitive matching
   if (isTRUE(case_insensitive)) {
     controlled$case_insensitive <- thesaurus$canon[match(tolower(controlled$term),
-                                                         tolower(thesaurus$exact))]
+                                                          tolower(thesaurus$variant))]
   }
 
   # TODO: Fuzzy boundary matching (#2)
@@ -146,14 +151,26 @@ control <- function(x, thesaurus,
 
 #' @rdname control
 #' @export
-control_ci <- function(x, thesaurus, ...) {
-  control(x, thesaurus, case_insensitive = TRUE, fuzzy_boundary = FALSE,
-          fuzzy_encoding = FALSE, ...)
+control_ci <- function(x, thesaurus, thesaurus_cols = c(1, 2), ...) {
+  control(x, thesaurus, thesaurus_cols, case_insensitive = TRUE,
+          fuzzy_boundary = FALSE, fuzzy_encoding = FALSE, ...)
 }
 
 #' @rdname control
 #' @export
-control_fuzzy <- function(x, thesaurus, ...) {
-  control(x, thesaurus, case_insensitive = TRUE, fuzzy_boundary = TRUE,
-          fuzzy_encoding = TRUE, ...)
+control_fuzzy <- function(x, thesaurus, thesaurus_cols = c(1, 2), ...) {
+  control(x, thesaurus, thesaurus_cols, case_insensitive = TRUE,
+          fuzzy_boundary = TRUE, fuzzy_encoding = TRUE, ...)
+}
+
+validate_thesaurus <- function(thesaurus) {
+  if (ncol(thesaurus) != 2) {
+    rlang::abort("`thesaurus_cols` must specify exactly 2 columns.")
+  }
+
+  if (anyDuplicated(thesaurus[[2]]) > 0) {
+    rlang::abort("Variants (column 2 of `thesaurus`) must be unique.")
+  }
+
+  invisible(thesaurus)
 }

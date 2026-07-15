@@ -49,3 +49,25 @@ test_that("control() does not warn about unmatched NAs", {
   expect_warning(control(c("red", NA), colour_thesaurus), regexp = NA)
   expect_warning(control(c("red", NA), colour_thesaurus, coalesce = FALSE), regexp = NA)
 })
+
+test_that("control() accepts thesaurus_cols by name", {
+  df <- data.frame(colour = c("red", "green"), shade = c("crimson", "mint"))
+  expect_equal(control(c("crimson", "mint"), df, thesaurus_cols = c("colour", "shade")),
+               c("red", "green"))
+})
+
+test_that("control() accepts thesaurus_cols by position", {
+  df <- data.frame(colour = c("red", "green"), shade = c("crimson", "mint"))
+  expect_equal(control(c("crimson", "mint"), df, thesaurus_cols = c("colour", "shade")),
+               control(c("crimson", "mint"), df, thesaurus_cols = c(1, 2)))
+})
+
+test_that("control() errors if thesaurus doesn't have exactly 2 columns", {
+  df <- data.frame(a = 1:3, b = 1:3, c = 1:3)
+  expect_error(control(1:3, df, thesaurus_cols = 1:3), "`thesaurus_cols` must specify exactly 2 columns")
+})
+
+test_that("control() errors if variants are not unique", {
+  df <- data.frame(a = c("x", "x"), b = c("y", "y"))
+  expect_error(control("y", df), "Variants .* must be unique")
+})
