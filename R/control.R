@@ -104,7 +104,7 @@ control <- function(x, thesaurus,
 
   # Inform
   if (isFALSE(quiet)) {
-    replaced <- controlled[controlled$term != controlled$match,]
+    replaced <- controlled[controlled$term != controlled$match, , drop = FALSE]
     if (nrow(replaced) > 0) {
       replaced <- paste(replaced$term, "\u2192", replaced$match)
       names(replaced) <- rep("i", length(replaced))
