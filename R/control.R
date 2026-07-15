@@ -90,16 +90,22 @@ control <- function(x, thesaurus,
                                                           tolower(thesaurus$variant))]
   }
 
-  # TODO: Fuzzy boundary matching (#2)
+  # Fuzzy boundary matching (#2)
   if (isTRUE(fuzzy_boundary)) {
-    rlang::abort("Sorry, fuzzy boundary matching is not yet implemented!",
-                 class = "controller_not_implemented")
+    controlled$fuzzy_boundary <- fuzzy_match(controlled$term,
+                                             thesaurus$variant,
+                                             thesaurus$canon,
+                                             "[[:punct:][:space:]]",
+                                             ignore_case = case_insensitive)
   }
 
   # Fuzzy encoding matching (#3)
   if (isTRUE(fuzzy_encoding)) {
-    rlang::abort("Sorry, fuzzy encoding matching is not yet implemented!",
-                 class = "controller_not_implemented")
+    controlled$fuzzy_encoding <- fuzzy_match(controlled$term,
+                                             thesaurus$variant,
+                                             thesaurus$canon,
+                                             "[^[:ascii:]]",
+                                             ignore_case = case_insensitive)
   }
 
   # Determine best match
@@ -173,4 +179,12 @@ validate_thesaurus <- function(thesaurus) {
   }
 
   invisible(thesaurus)
+}
+
+fuzzy_match <- function(terms, variants, canon, char_class, ignore_case = FALSE) {
+  patterns <- paste0("^", gsub(char_class, ".?", variants, perl = TRUE), "$")
+  vapply(terms, function(term) {
+    idx <- which(vapply(patterns, grepl, logical(1), x = term, ignore.case = ignore_case, perl = TRUE))
+    if (length(idx) > 0) canon[idx[1]] else NA_character_
+  }, character(1))
 }

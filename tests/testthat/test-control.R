@@ -71,3 +71,31 @@ test_that("control() errors if variants are not unique", {
   df <- data.frame(a = c("x", "x"), b = c("y", "y"))
   expect_error(control("y", df), "Variants .* must be unique")
 })
+
+test_that("control() with fuzzy boundary matching works", {
+  df <- data.frame(canon = "foo bar", variant = "foo-bar")
+  expect_equal(
+    control(c("foo bar", "foo_bar", "foobar"), df,
+            fuzzy_boundary = TRUE, quiet = TRUE, warn_unmatched = FALSE),
+    c("foo bar", "foo bar", "foo bar")
+  )
+})
+
+test_that("control() with fuzzy encoding matching works", {
+  df <- data.frame(canon = "bar", variant = "fo\u00f6")
+  expect_equal(
+    control("foo", df, fuzzy_encoding = TRUE, quiet = TRUE, warn_unmatched = FALSE),
+    "bar"
+  )
+})
+
+test_that("control_fuzzy() combines all matching strategies", {
+  boundary <- data.frame(canon = "foo bar", variant = "foo-bar")
+  encoding <- data.frame(canon = "baz", variant = "ba\u00e7")
+
+  expect_equal(
+    control_fuzzy(c("foo bar", "foo_bar", "bac"), rbind(boundary, encoding),
+                  quiet = TRUE, warn_unmatched = FALSE),
+    c("foo bar", "foo bar", "baz")
+  )
+})

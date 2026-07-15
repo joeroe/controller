@@ -64,11 +64,24 @@ For example, to perform a case insensitive match to the thesaurus:
 
 ```{r eg-ci}
 shades_ci <- toupper(shades)
-control_ci(shades, colour_thesaurus)
+control_ci(shades_ci, colour_thesaurus)
 ```
 
-`control_fuzzy()` goes further by also ignoring differences in word boundaries (e.g. `"foo bar"` vs. `"foo-bar"`) and character encoding (e.g. `"foo"` vs. `"foö"`).
-These features are not yet implemented, but are planned for a future release.
+`control_fuzzy()` goes further by also ignoring differences in word boundaries and character encoding.
+Fuzzy boundary matching treats word boundaries like spaces, hyphens, and underscores as equivalent:
+
+```{r eg-boundary}
+df <- data.frame(preferred = "foo bar", variant = "foo-bar")
+control(c("foo bar", "foo_bar", "foobar"), df,
+        fuzzy_boundary = TRUE, quiet = FALSE)
+```
+
+Fuzzy encoding matching ignores non-ASCII characters, so plain ASCII input can match variants with diacritics or wrongly encoded characters ('mojibake'):
+
+```{r eg-encoding}
+df <- data.frame(preferred = "bar", variant = "fo\u00f6")
+control("foo", df, fuzzy_encoding = TRUE, quiet = FALSE)
+```
 
 To inspect which type of match was used for each value, set `coalesce = FALSE`.
 This returns a data frame with a column for each match type, rather than a single vector:
