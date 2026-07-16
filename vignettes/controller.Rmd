@@ -96,12 +96,11 @@ df <- data.frame(preferred = "bar", variant = "fo\u00f6")
 control("foo", df, fuzzy_encoding = TRUE, quiet = FALSE)
 ```
 
-To inspect which type of match was used for each value, set `coalesce = FALSE`.
-This returns a data frame with a column for each match type, rather than a single vector:
+To inspect which type of match was used for each value, use `control_matches()`.
+It returns a data frame with a column for each match type, rather than a single vector:
 
 ```{r eg-coalesce}
-control(shades_ci, colour_thesaurus,
-        case_insensitive = TRUE, coalesce = FALSE)
+control_matches(shades_ci, colour_thesaurus, case_insensitive = TRUE)
 ```
 
 ## Thesaurus format

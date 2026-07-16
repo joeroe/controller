@@ -19,7 +19,7 @@
 #'   respectively. Defaults to the first two columns.
 #' @param ... Other arguments passed to [control()]. This includes fuzzy
 #'   matching options (`case_insensitive`, `fuzzy_boundary`, `fuzzy_encoding`)
-#'   and output options (`quiet`, `warn_unmatched`, `coalesce`).
+#'   and output options (`quiet`, `warn_unmatched`).
 #'
 #' @return
 #' The object `x` with its names replaced by controlled values.

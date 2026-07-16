@@ -24,7 +24,7 @@ respectively. Defaults to the first two columns.}
 
 \item{...}{Other arguments passed to \code{\link[=control]{control()}}. This includes fuzzy
 matching options (\code{case_insensitive}, \code{fuzzy_boundary}, \code{fuzzy_encoding})
-and output options (\code{quiet}, \code{warn_unmatched}, \code{coalesce}).}
+and output options (\code{quiet}, \code{warn_unmatched}).}
 }
 \value{
 The object \code{x} with its names replaced by controlled values.

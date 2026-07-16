@@ -3,6 +3,7 @@
 export(control)
 export(control_ci)
 export(control_fuzzy)
+export(control_matches)
 export(control_names)
 export(control_names_ci)
 export(control_names_fuzzy)

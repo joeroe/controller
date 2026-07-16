@@ -14,8 +14,7 @@ control(
   fuzzy_boundary = FALSE,
   fuzzy_encoding = FALSE,
   quiet = FALSE,
-  warn_unmatched = TRUE,
-  coalesce = TRUE
+  warn_unmatched = TRUE
 )
 
 control_ci(x, thesaurus, thesaurus_cols = c(1, 2), ...)
@@ -46,22 +45,13 @@ matches \code{"foö"}).}
 \item{warn_unmatched}{If \code{TRUE} (the default), issues a warning for values
 that couldn't be matched in \code{thesaurus}.}
 
-\item{coalesce}{If \code{TRUE} (the default), return only the closest matches in
-\code{x}. If \code{FALSE}, return all matches.}
-
 \item{...}{For \code{control_ci()} and \code{control_fuzzy()}, other arguments passed
 to \code{control()}. This includes fuzzy matching options (\code{fuzzy_boundary},
-\code{fuzzy_encoding}) and output options (\code{quiet}, \code{warn_unmatched},
-\code{coalesce}).}
+\code{fuzzy_encoding}) and output options (\code{quiet}, \code{warn_unmatched}).}
 }
 \value{
-If \code{coalesce = TRUE} (the default), a vector the same length as \code{x} with
-values matching variants in \code{thesaurus} replaced with the preferred term.
-NAs in \code{x} are preserved as NAs.
-
-If \code{coalesce = FALSE}, a data frame with the same number of rows as \code{x}, and
-columns for each type of match (e.g. \code{exact}, \code{case_insensitive},
-\code{fuzzy_boundary}, \code{fuzzy_encoding}). Rows for NA values in \code{x} are all NAs.
+A vector the same length as \code{x} with values matching variants in \code{thesaurus}
+replaced with the preferred term. NAs in \code{x} are preserved as NAs.
 
 By default gives a message listing replaced values and a warning listing any
 values not matched in the thesaurus. These can be suppressed with
@@ -90,7 +80,6 @@ control(x, colour_thesaurus)
 x <- toupper(x)
 control_ci(x, colour_thesaurus)
 
-# coalesce = FALSE returns all matches as a data frame, which can be useful
-# for debugging:
-control(x, colour_thesaurus, case_insensitive = TRUE, coalesce = FALSE)
+# control_matches() returns a data frame showing which match type was used:
+control_matches(x, colour_thesaurus, case_insensitive = TRUE)
 }
