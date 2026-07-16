@@ -8,11 +8,11 @@ Authors@R:
            email = "joe@joeroe.io",
            comment = c(ORCID = "0000-0002-1011-1244"))
 Description: Provides functions for working with controlled vocabularies.
-  A controlled vocabulary is a predefined set of terms intended to be used to 
-  be used in a specific context. This package introduces the 'control' verb, 
-  which recodes values in a vector using a lookup table of preferred and 
-  variant terms (a 'thesaurus'). It also includes functions for reading
-  controlled vocabularies into R from standard formats.
+  A controlled vocabulary is a predefined set of terms intended to be used in 
+  in a specific context. This package introduces the 'control' verb, which 
+  recodes values in a vector using a lookup table of preferred and variant 
+  terms (a 'thesaurus'). It also includes functions for reading controlled 
+  vocabularies into R from standard formats.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
