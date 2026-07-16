@@ -11,12 +11,12 @@ Source:
 [`DESCRIPTION`](https://github.com/joeroe/controller/blob/main/DESCRIPTION)
 
 Roe J (2026). *controller: Controlled Vocabularies*. R package version
-0.0.0.9000, <https://controller.joeroe.io>.
+0.1.0, <https://controller.joeroe.io>.
 
     @Manual{,
       title = {controller: Controlled Vocabularies},
       author = {Joe Roe},
       year = {2026},
-      note = {R package version 0.0.0.9000},
+      note = {R package version 0.1.0},
       url = {https://controller.joeroe.io},
     }

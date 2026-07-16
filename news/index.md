@@ -1,5 +1,7 @@
 # Changelog
 
+## controller 0.1.0
+
 ## controller 0.0.0.9000
 
 - Adds [`control()`](https://controller.joeroe.io/reference/control.md),
