@@ -219,8 +219,8 @@ control(animals, my_wider_thesaurus, thesaurus_cols = c("label", "variant"))
 ```
 
 The package can also read controlled vocabularies in Historic England’s
-[FISH](https://www.heritage-standards.org.uk/fish-vocabularies/) (Forum
-on Information Standards in Heritage) format using
+[FISH](https://heritage-standards.org.uk/fish-vocabularies/) (Forum on
+Information Standards in Heritage) format using
 [`read_fish()`](https://controller.joeroe.io/reference/read_fish.md).
 The `path` argument can be a local `.zip` file, an uncompressed
 directory, or a URL:

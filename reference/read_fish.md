@@ -2,7 +2,7 @@
 
 Reads controlled vocabularies from Historic England's FISH (Forum on
 Information Standards in Heritage) group. These can be downloaded from:
-<https://www.heritage-standards.org.uk/fish-vocabularies/>.
+<https://heritage-standards.org.uk/fish-vocabularies/>.
 
 ## Usage
 
@@ -26,7 +26,7 @@ A data frame with two columns: `preferred` and `term`.
 
 - Forum on Information Standards in Heritage, "FISH Thesaurus Table
   Structure", Available from:
-  <https://www.heritage-standards.org.uk/fish-vocabularies/>.
+  <https://heritage-standards.org.uk/fish-vocabularies/>.
 
 ## Examples
 

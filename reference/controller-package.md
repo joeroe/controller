@@ -1,11 +1,10 @@
 # controller: Controlled Vocabularies
 
-Provides functions for working with controlled vocabularies. A
-controlled vocabulary is a predefined set of terms intended to be used
-in in a specific context. This package introduces the 'control' verb,
-which recodes values in a vector using a lookup table of preferred and
-variant terms (a 'thesaurus'). It also includes functions for reading
-controlled vocabularies into R from standard formats.
+Work with controlled vocabularies; a predefined set of terms intended to
+be used in in a specific context. This package introduces the 'control'
+verb, which recodes values in a vector using a lookup table of preferred
+and variant terms (a 'thesaurus'). It also includes functions for
+reading controlled vocabularies from standard formats.
 
 ## See also
 

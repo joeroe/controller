@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Controlled Vocabularies">
-<meta name="description" content="Provides functions for working with controlled vocabularies. A controlled vocabulary is a predefined set of terms intended to be used in in a specific context. This package introduces the control verb, which recodes values in a vector using a lookup table of preferred and variant terms (a thesaurus). It also includes functions for reading controlled vocabularies into R from standard formats.">
-<meta property="og:description" content="Provides functions for working with controlled vocabularies. A controlled vocabulary is a predefined set of terms intended to be used in in a specific context. This package introduces the control verb, which recodes values in a vector using a lookup table of preferred and variant terms (a thesaurus). It also includes functions for reading controlled vocabularies into R from standard formats.">
+<meta name="description" content="Work with controlled vocabularies; a predefined set of terms intended to be used in in a specific context. This package introduces the control verb, which recodes values in a vector using a lookup table of preferred and variant terms (a thesaurus). It also includes functions for reading controlled vocabularies from standard formats.">
+<meta property="og:description" content="Work with controlled vocabularies; a predefined set of terms intended to be used in in a specific context. This package introduces the control verb, which recodes values in a vector using a lookup table of preferred and variant terms (a thesaurus). It also includes functions for reading controlled vocabularies from standard formats.">
 <script async src="https://umami.joeroe.io/script.js" data-website-id="91288a4c-392d-4693-a467-7d832d73b872"></script>
 </head>
 <body>
@@ -57,21 +57,19 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of controller from GitHub using the <a href="https://remotes.r-lib.org/" class="external-link">remotes</a> package:</p>
+<p>You can install the latest release of controller <a href="https://cran.r-project.org/package=controller" class="external-link">from CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"joeroe/controller"</span><span class="op">)</span></span></code></pre></div>
-<!--
-You can install the released version of controller from [CRAN](https://CRAN.R-project.org) with:
-&#10;``` r
-install.packages("controller")
-```
--->
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"controller"</span><span class="op">)</span></span></code></pre></div>
+<p>Or the development version from GitHub using the <a href="https://remotes.r-lib.org/" class="external-link">remotes</a> package:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"joeroe/controller"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>A common data-tidying problem is standardising variant terms for the same concept. Imagine we have a dataset that uses a number of different names for shades of the same colour. As data analysts, we naturally want to recode the data to eliminate this messy creativity, for example using <a href="https://dplyr.tidyverse.org/reference/recode.html" class="external-link">dplyr::recode()</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">shades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"daffodil"</span>, <span class="st">"purple"</span>, <span class="st">"magenta"</span>, <span class="st">"azure"</span>, <span class="st">"navy"</span>, <span class="st">"violet"</span><span class="op">)</span></span>
 <span></span>
@@ -84,7 +82,7 @@ install.packages("controller")
 <span>       violet <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "yellow" "purple" "pink"   "blue"   "blue"   "purple"</span></span></code></pre></div>
 <p>But recoding this way can be tedious, especially if there are a large number of terms. With <code><a href="reference/control.html">control()</a></code>, we can instead use a data frame containing a thesaurus to replace the values:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://controller.joeroe.io">controller</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"colour_thesaurus"</span><span class="op">)</span></span>
 <span></span>
@@ -98,7 +96,7 @@ install.packages("controller")
 <span><span class="co">#&gt; ✖ magenta</span></span>
 <span><span class="co">#&gt; [1] "yellow"  "purple"  "magenta" "blue"    "blue"    "purple"</span></span></code></pre></div>
 <p><code><a href="reference/control.html">control()</a></code> also supports fuzzy matching, removing the need to exhaustively list variants for common causes of differing terminology. For example, to perform a case insensitive match to the thesaurus:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">shades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">shades</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/control.html">control_ci</a></span><span class="op">(</span><span class="va">shades</span>, <span class="va">colour_thesaurus</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Replaced values:</span></span>
