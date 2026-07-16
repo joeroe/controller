@@ -109,7 +109,7 @@ control <- function(x, thesaurus,
   }
 
   # Determine best match
-  controlled <- dplyr::relocate(controlled, !.data$term)
+  controlled <- dplyr::relocate(controlled, !"term")
   controlled$match <- do.call(dplyr::coalesce, controlled)
 
   # TODO: detect ambiguous matches and warn or error (#4)
