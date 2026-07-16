@@ -8,7 +8,7 @@ variant terms (a *thesaurus*).
 
 ## Installation
 
-You can install the development version of controlled from GitHub using
+You can install the development version of controller from GitHub using
 the [remotes](https://remotes.r-lib.org/) package:
 
 ``` r
