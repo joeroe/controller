@@ -32,8 +32,10 @@
 #'   that couldn't be matched in `thesaurus`.
 #' @param coalesce If `TRUE` (the default), return only the closest matches in
 #'   `x`. If `FALSE`, return all matches.
-#' @param ... For `control_ci()` and `control_fuzzy`, other arguments passed to
-#'   `control()`.
+#' @param ... For `control_ci()` and `control_fuzzy()`, other arguments passed
+#'   to `control()`. This includes fuzzy matching options (`fuzzy_boundary`,
+#'   `fuzzy_encoding`) and output options (`quiet`, `warn_unmatched`,
+#'   `coalesce`).
 #'
 #' @return
 #' If `coalesce = TRUE` (the default), a vector the same length as `x` with
@@ -158,8 +160,7 @@ control <- function(x, thesaurus,
 #' @rdname control
 #' @export
 control_ci <- function(x, thesaurus, thesaurus_cols = c(1, 2), ...) {
-  control(x, thesaurus, thesaurus_cols, case_insensitive = TRUE,
-          fuzzy_boundary = FALSE, fuzzy_encoding = FALSE, ...)
+  control(x, thesaurus, thesaurus_cols, case_insensitive = TRUE, ...)
 }
 
 #' @rdname control

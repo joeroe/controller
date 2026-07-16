@@ -104,3 +104,21 @@ test_that("control_fuzzy() combines all matching strategies", {
     c("foo bar", "foo bar", "baz")
   )
 })
+
+test_that("control_ci() accepts fuzzy matching arguments", {
+  df <- data.frame(canon = "foo bar", variant = "foo-bar")
+  expect_equal(
+    control_ci(c("foo bar", "foo_bar"), df,
+               fuzzy_boundary = TRUE, quiet = TRUE, warn_unmatched = FALSE),
+    c("foo bar", "foo bar")
+  )
+})
+
+test_that("control_ci() defaults to exact matching only", {
+  df <- data.frame(canon = "foo bar", variant = "foo-bar")
+  expect_equal(
+    control_ci(c("foo bar", "foo_bar"), df,
+               quiet = TRUE, warn_unmatched = FALSE),
+    c("foo bar", "foo_bar")
+  )
+})
