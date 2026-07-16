@@ -1,3 +1,8 @@
+test_that("control() aborts if `x` is not a vector", {
+  expect_error(control(data.frame(), colour_thesaurus),
+               regexp = "`x` must be a vector")
+})
+
 test_that("control() with exact matching works", {
   expect_equal(control(colour_thesaurus$shade, colour_thesaurus, quiet = TRUE),
                colour_thesaurus$colour)
