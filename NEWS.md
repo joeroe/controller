@@ -1,3 +1,5 @@
+# controller 0.1.0
+
 # controller 0.0.0.9000
 
 * Adds `control()`, `control_ci()`, and `control_fuzzy()`
