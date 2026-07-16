@@ -10,7 +10,7 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![R-CMD-check](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml)
 [![Test
-covcontrollerge](https://codecov.io/gh/joeroe/controller/graph/badge.svg)](https://app.codecov.io/gh/joeroe/controller)
+coverage](https://codecov.io/gh/joeroe/controller/graph/badge.svg)](https://app.codecov.io/gh/joeroe/controller)
 <!-- badges: end -->
 
 **controller** is a collection of functions for working with controlled
@@ -20,7 +20,7 @@ values in a vector using a lookup table of preferred and variant terms
 
 ## Installation
 
-You can install the development version of controlled from GitHub using
+You can install the development version of controller from GitHub using
 the [remotes](https://remotes.r-lib.org/) package:
 
 ``` r
