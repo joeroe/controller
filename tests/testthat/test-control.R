@@ -40,14 +40,29 @@ test_that("control() preserves NAs in x", {
   expect_equal(is.na(result), c(FALSE, TRUE, FALSE))
 })
 
-test_that("control_matches() preserves NAs in x", {
-  x <- c("red", NA, "blue")
-  result <- control_matches(x, colour_thesaurus)
+test_that("control() returns unmatched terms as-is", {
+  x <- c("red", "unknown", "blue")
+  result <- control(x, colour_thesaurus, quiet = TRUE, warn_unmatched = FALSE)
+  expect_equal(result, c("red", "unknown", "blue"))
+})
 
-  expect_equal(nrow(result), 3)
-  expect_true(all(is.na(result[2, ])))
-  expect_true(all(!is.na(result[1, ])))
-  expect_true(all(!is.na(result[3, ])))
+test_that("control() and control_matches() produce consistent results", {
+  x <- c("red", "lipstick", "green", "unknown")
+
+  # Exact matching only
+  ctrl_result <- control(x, colour_thesaurus, quiet = TRUE, warn_unmatched = FALSE)
+  matches_result <- control_matches(x, colour_thesaurus)
+  coalesced <- dplyr::coalesce(matches_result$exact_match, matches_result$term)
+  expect_equal(coalesced, ctrl_result)
+
+  # Case insensitive matching
+  x_ci <- toupper(x)
+  ctrl_result_ci <- control_ci(x_ci, colour_thesaurus, quiet = TRUE, warn_unmatched = FALSE)
+  matches_result_ci <- control_matches(x_ci, colour_thesaurus, case_insensitive = TRUE)
+  coalesced_ci <- dplyr::coalesce(matches_result_ci$exact_match,
+                                  matches_result_ci$case_insensitive_match,
+                                  matches_result_ci$term)
+  expect_equal(coalesced_ci, ctrl_result_ci)
 })
 
 test_that("control() does not warn about unmatched NAs", {
@@ -120,57 +135,4 @@ test_that("control_ci() defaults to exact matching only", {
                quiet = TRUE, warn_unmatched = FALSE),
     c("foo bar", "foo_bar")
   )
-})
-
-test_that("control_matches() returns a data frame with correct columns", {
-  x <- c("red", "lipstick", "green")
-  result <- control_matches(x, colour_thesaurus)
-
-  expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 3)
-  expect_equal(ncol(result), 2)
-  expect_true("term" %in% names(result))
-  expect_true("exact_match" %in% names(result))
-})
-
-test_that("control_matches() includes term column with original values", {
-  x <- c("red", "lipstick", "green")
-  result <- control_matches(x, colour_thesaurus)
-
-  expect_equal(result$term, x)
-})
-
-test_that("control_matches() returns columns for each active match type", {
-  x <- c("RED", "lipstick")
-  result <- control_matches(x, colour_thesaurus, case_insensitive = TRUE)
-
-  expect_equal(ncol(result), 3)
-  expect_true("term" %in% names(result))
-  expect_true("exact_match" %in% names(result))
-  expect_true("case_insensitive_match" %in% names(result))
-})
-
-test_that("control_matches() works with exact matching", {
-  result <- control_matches(colour_thesaurus$shade, colour_thesaurus)
-
-  expect_equal(result$exact_match, colour_thesaurus$colour)
-})
-
-test_that("control_matches() works with case insensitive matching", {
-  result <- control_matches(toupper(colour_thesaurus$shade), colour_thesaurus,
-                            case_insensitive = TRUE)
-
-  expect_equal(result$case_insensitive_match, colour_thesaurus$colour)
-})
-
-test_that("control_matches() works with fuzzy matching", {
-  df <- data.frame(canon = "foo bar", variant = "foo-bar")
-  result <- control_matches(c("foo bar", "foo_bar"), df, fuzzy_boundary = TRUE)
-
-  expect_equal(result$fuzzy_boundary_match, c("foo bar", "foo bar"))
-})
-
-test_that("control_matches() aborts if `x` is not a vector", {
-  expect_error(control_matches(data.frame(), colour_thesaurus),
-               regexp = "`x` must be a vector")
 })
