@@ -2,7 +2,10 @@
 
 ## controller 0.0.0.9000
 
-- Adds [`control()`](https://controller.joeroe.io/reference/control.md)
+- Adds [`control()`](https://controller.joeroe.io/reference/control.md),
+  [`control_ci()`](https://controller.joeroe.io/reference/control.md),
+  and
+  [`control_fuzzy()`](https://controller.joeroe.io/reference/control.md)
 - Adds example dataset `colour_thesaurus`
 - Adds
   [`read_fish()`](https://controller.joeroe.io/reference/read_fish.md)

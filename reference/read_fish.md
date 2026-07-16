@@ -15,7 +15,8 @@ read_fish(path)
 - path:
 
   Path or URL to a vocabulary in FISH's CSV format. Can be either a
-  `.zip` archive or a directory containing already uncompressed files.
+  `.zip` archive or a directory containing already uncompressed files,
+  or a URL.
 
 ## Value
 
