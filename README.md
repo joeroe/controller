@@ -20,21 +20,22 @@ values in a vector using a lookup table of preferred and variant terms
 
 ## Installation
 
-You can install the development version of controller from GitHub using
-the [remotes](https://remotes.r-lib.org/) package:
+You can install the latest release of controller [from
+CRAN](https://cran.r-project.org/package=controller) with:
 
 ``` r
+install.packages("controller")
+```
+
+Or the development version from GitHub using the
+[remotes](https://remotes.r-lib.org/) package:
+
+``` r
+# install.packages("remotes")
 remotes::install_github("joeroe/controller")
 ```
 
-<!--
-You can install the released version of controller from [CRAN](https://CRAN.R-project.org) with:
-&#10;``` r
-install.packages("controller")
-```
--->
-
-## Example
+## Usage
 
 A common data-tidying problem is standardising variant terms for the
 same concept. Imagine we have a dataset that uses a number of different

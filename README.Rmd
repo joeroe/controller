@@ -26,21 +26,20 @@ It introduces the `control()` verb, which recodes values in a vector using a loo
 
 ## Installation
 
-You can install the development version of controller from GitHub using the [remotes](https://remotes.r-lib.org/) package:
+You can install the latest release of controller [from CRAN](https://cran.r-project.org/package=controller) with:
 
-``` r
+```{r install, eval=FALSE}
+install.packages("controller")
+```
+
+Or the development version from GitHub using the [remotes](https://remotes.r-lib.org/) package:
+
+```{r install-dev, eval=FALSE}
+# install.packages("remotes")
 remotes::install_github("joeroe/controller")
 ```
 
-<!--
-You can install the released version of controller from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("controller")
-```
--->
-
-## Example
+## Usage
 
 A common data-tidying problem is standardising variant terms for the same concept.
 Imagine we have a dataset that uses a number of different names for shades of the same colour.
