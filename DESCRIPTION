@@ -24,7 +24,7 @@ Imports:
     rlang,
     utils
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)
 URL: https://controller.joeroe.io, https://github.com/joeroe/controller
 BugReports: https://github.com/joeroe/controller/issues
 Suggests: 
