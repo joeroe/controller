@@ -37,7 +37,7 @@ read_fish <- function(path) {
     files <- fs::dir_ls(path)
   }
   else {
-    rlang::abort("`path` must be a path to a an existing .zip file or directory, or a valid URL.",
+    rlang::abort("`path` must be a path to a .zip file or directory, or a valid URL.",
                  class = "controller_read_error")
   }
 
