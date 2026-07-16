@@ -62,6 +62,32 @@ values that could not be matched in the thesaurus. These can be
 suppressed with `quiet = TRUE` and `warn_unmatched = FALSE`
 respectively.
 
+Use
+[`control_names()`](https://controller.joeroe.io/reference/control_names.md)
+to control the names of an object rather than its values. This is useful
+for standardising column names in data frames:
+
+``` r
+
+df <- data.frame(temp = 20, humid = 65, `wind speed` = 10, date = "2024-01-01")
+df
+#>   temp humid wind.speed       date
+#> 1   20    65         10 2024-01-01
+
+control_names(df, thesaurus = data.frame(
+  preferred = c("temperature", "humidity", "wind_speed"),
+  variant = c("temp", "humid", "wind speed")
+))
+#> Replaced values:
+#> ℹ temp → temperature
+#> ℹ humid → humidity
+#> Warning: Some values of `x` were not matched in `thesaurus`:
+#> ✖ wind.speed
+#> ✖ date
+#>   temperature humidity wind.speed       date
+#> 1          20       65         10 2024-01-01
+```
+
 ## Fuzzy matching
 
 [`control()`](https://controller.joeroe.io/reference/control.md) also
@@ -113,29 +139,21 @@ control("foo", df, fuzzy_encoding = TRUE, quiet = FALSE)
 #> [1] "bar"
 ```
 
-To inspect which type of match was used for each value, set
-`coalesce = FALSE`. This returns a data frame with a column for each
-match type, rather than a single vector:
+To inspect which type of match was used for each value, use
+[`control_matches()`](https://controller.joeroe.io/reference/control_matches.md).
+It returns a data frame with a column for each match type, rather than a
+single vector:
 
 ``` r
 
-control(shades_ci, colour_thesaurus,
-        case_insensitive = TRUE, coalesce = FALSE)
-#> Replaced values:
-#> ℹ DAFFODIL → yellow
-#> ℹ PURPLE → purple
-#> ℹ AZURE → blue
-#> ℹ NAVY → blue
-#> ℹ VIOLET → purple
-#> Warning: Some values of `x` were not matched in `thesaurus`:
-#> ✖ MAGENTA
-#>   exact case_insensitive
-#> 1  <NA>           yellow
-#> 2  <NA>           purple
-#> 3  <NA>             <NA>
-#> 4  <NA>             blue
-#> 5  <NA>             blue
-#> 6  <NA>           purple
+control_matches(shades_ci, colour_thesaurus, case_insensitive = TRUE)
+#>       term exact_match case_insensitive_match
+#> 1 DAFFODIL        <NA>                 yellow
+#> 2   PURPLE        <NA>                 purple
+#> 3  MAGENTA        <NA>                   <NA>
+#> 4    AZURE        <NA>                   blue
+#> 5     NAVY        <NA>                   blue
+#> 6   VIOLET        <NA>                 purple
 ```
 
 ## Thesaurus format

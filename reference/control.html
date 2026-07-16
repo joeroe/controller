@@ -72,8 +72,7 @@ matching respectively.</p>
 <span>  fuzzy_boundary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fuzzy_encoding <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  warn_unmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  coalesce <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  warn_unmatched <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">control_ci</span><span class="op">(</span><span class="va">x</span>, <span class="va">thesaurus</span>, thesaurus_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -124,24 +123,16 @@ matches <code>"foö"</code>).</p></dd>
 that couldn't be matched in <code>thesaurus</code>.</p></dd>
 
 
-<dt id="arg-coalesce">coalesce<a class="anchor" aria-label="anchor" href="#arg-coalesce"></a></dt>
-<dd><p>If <code>TRUE</code> (the default), return only the closest matches in
-<code>x</code>. If <code>FALSE</code>, return all matches.</p></dd>
-
-
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>For <code>control_ci()</code> and <code>control_fuzzy</code>, other arguments passed to
-<code>control()</code>.</p></dd>
+<dd><p>For <code>control_ci()</code> and <code>control_fuzzy()</code>, other arguments passed
+to <code>control()</code>. This includes fuzzy matching options (<code>fuzzy_boundary</code>,
+<code>fuzzy_encoding</code>) and output options (<code>quiet</code>, <code>warn_unmatched</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If <code>coalesce = TRUE</code> (the default), a vector the same length as <code>x</code> with
-values matching variants in <code>thesaurus</code> replaced with the preferred term.
-NAs in <code>x</code> are preserved as NAs.</p>
-<p>If <code>coalesce = FALSE</code>, a data frame with the same number of rows as <code>x</code>, and
-columns for each type of match (e.g. <code>exact</code>, <code>case_insensitive</code>,
-<code>fuzzy_boundary</code>, <code>fuzzy_encoding</code>). Rows for NA values in <code>x</code> are all NAs.</p>
+    <p>A vector the same length as <code>x</code> with values matching variants in <code>thesaurus</code>
+replaced with the preferred term. NAs in <code>x</code> are preserved as NAs.</p>
 <p>By default gives a message listing replaced values and a warning listing any
 values not matched in the thesaurus. These can be suppressed with
 <code>quiet = TRUE</code> and <code>warn_unmatched = FALSE</code> respectively.</p>
@@ -172,23 +163,15 @@ values not matched in the thesaurus. These can be suppressed with
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> AZURE → blue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red"   "red"   "green" "green" "blue"  "blue" </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># coalesce = FALSE returns all matches as a data frame, which can be useful</span></span></span>
-<span class="r-in"><span><span class="co"># for debugging:</span></span></span>
-<span class="r-in"><span><span class="fu">control</span><span class="op">(</span><span class="va">x</span>, <span class="va">colour_thesaurus</span>, case_insensitive <span class="op">=</span> <span class="cn">TRUE</span>, coalesce <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced values:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> RED → red</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> LIPSTICK → red</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> GREEN → green</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> MINT → green</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> BLUE → blue</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> AZURE → blue</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   exact case_insensitive</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;              red</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  &lt;NA&gt;              red</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  &lt;NA&gt;            green</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  &lt;NA&gt;            green</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  &lt;NA&gt;             blue</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  &lt;NA&gt;             blue</span>
+<span class="r-in"><span><span class="co"># control_matches() returns a data frame showing which match type was used:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="control_matches.html">control_matches</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">colour_thesaurus</span>, case_insensitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       term exact_match case_insensitive_match</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      RED        &lt;NA&gt;                    red</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 LIPSTICK        &lt;NA&gt;                    red</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    GREEN        &lt;NA&gt;                  green</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     MINT        &lt;NA&gt;                  green</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     BLUE        &lt;NA&gt;                   blue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AZURE        &lt;NA&gt;                   blue</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

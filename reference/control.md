@@ -24,8 +24,7 @@ control(
   fuzzy_boundary = FALSE,
   fuzzy_encoding = FALSE,
   quiet = FALSE,
-  warn_unmatched = TRUE,
-  coalesce = TRUE
+  warn_unmatched = TRUE
 )
 
 control_ci(x, thesaurus, thesaurus_cols = c(1, 2), ...)
@@ -73,26 +72,17 @@ control_fuzzy(x, thesaurus, thesaurus_cols = c(1, 2), ...)
   If `TRUE` (the default), issues a warning for values that couldn't be
   matched in `thesaurus`.
 
-- coalesce:
-
-  If `TRUE` (the default), return only the closest matches in `x`. If
-  `FALSE`, return all matches.
-
 - ...:
 
-  For `control_ci()` and `control_fuzzy`, other arguments passed to
-  `control()`.
+  For `control_ci()` and `control_fuzzy()`, other arguments passed to
+  `control()`. This includes fuzzy matching options (`fuzzy_boundary`,
+  `fuzzy_encoding`) and output options (`quiet`, `warn_unmatched`).
 
 ## Value
 
-If `coalesce = TRUE` (the default), a vector the same length as `x` with
-values matching variants in `thesaurus` replaced with the preferred
-term. NAs in `x` are preserved as NAs.
-
-If `coalesce = FALSE`, a data frame with the same number of rows as `x`,
-and columns for each type of match (e.g. `exact`, `case_insensitive`,
-`fuzzy_boundary`, `fuzzy_encoding`). Rows for NA values in `x` are all
-NAs.
+A vector the same length as `x` with values matching variants in
+`thesaurus` replaced with the preferred term. NAs in `x` are preserved
+as NAs.
 
 By default gives a message listing replaced values and a warning listing
 any values not matched in the thesaurus. These can be suppressed with
@@ -124,21 +114,13 @@ control_ci(x, colour_thesaurus)
 #> ℹ AZURE → blue
 #> [1] "red"   "red"   "green" "green" "blue"  "blue" 
 
-# coalesce = FALSE returns all matches as a data frame, which can be useful
-# for debugging:
-control(x, colour_thesaurus, case_insensitive = TRUE, coalesce = FALSE)
-#> Replaced values:
-#> ℹ RED → red
-#> ℹ LIPSTICK → red
-#> ℹ GREEN → green
-#> ℹ MINT → green
-#> ℹ BLUE → blue
-#> ℹ AZURE → blue
-#>   exact case_insensitive
-#> 1  <NA>              red
-#> 2  <NA>              red
-#> 3  <NA>            green
-#> 4  <NA>            green
-#> 5  <NA>             blue
-#> 6  <NA>             blue
+# control_matches() returns a data frame showing which match type was used:
+control_matches(x, colour_thesaurus, case_insensitive = TRUE)
+#>       term exact_match case_insensitive_match
+#> 1      RED        <NA>                    red
+#> 2 LIPSTICK        <NA>                    red
+#> 3    GREEN        <NA>                  green
+#> 4     MINT        <NA>                  green
+#> 5     BLUE        <NA>                   blue
+#> 6    AZURE        <NA>                   blue
 ```

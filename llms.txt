@@ -88,6 +88,12 @@ control_ci(shades, colour_thesaurus)
   [`control_ci()`](https://controller.joeroe.io/reference/control.md)
   [`control_fuzzy()`](https://controller.joeroe.io/reference/control.md)
   : Recode values using a thesaurus
+- [`control_matches()`](https://controller.joeroe.io/reference/control_matches.md)
+  : Show detailed match results from a thesaurus
+- [`control_names()`](https://controller.joeroe.io/reference/control_names.md)
+  [`control_names_ci()`](https://controller.joeroe.io/reference/control_names.md)
+  [`control_names_fuzzy()`](https://controller.joeroe.io/reference/control_names.md)
+  : Control the names of an object
 
 ## Read controlled vocabularies
 
