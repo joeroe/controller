@@ -8,7 +8,8 @@ read_fish(path)
 }
 \arguments{
 \item{path}{Path or URL to a vocabulary in FISH's CSV format. Can be
-either a \code{.zip} archive or a directory containing already uncompressed files.}
+either a \code{.zip} archive or a directory containing already uncompressed
+files, or a URL.}
 }
 \value{
 A data frame with two columns: \code{preferred} and \code{term}.
