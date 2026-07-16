@@ -57,6 +57,19 @@ control(shades, colour_thesaurus)
 By default, `control()` issues a message listing the values that were replaced and a warning for any values that could not be matched in the thesaurus.
 These can be suppressed with `quiet = TRUE` and `warn_unmatched = FALSE` respectively.
 
+Use `control_names()` to control the names of an object rather than its values.
+This is useful for standardising column names in data frames:
+
+```{r eg-control-names}
+df <- data.frame(temp = 20, humid = 65, `wind speed` = 10, date = "2024-01-01")
+df
+
+control_names(df, thesaurus = data.frame(
+  preferred = c("temperature", "humidity", "wind_speed"),
+  variant = c("temp", "humid", "wind speed")
+))
+```
+
 ## Fuzzy matching
 
 `control()` also supports fuzzy matching, removing the need to exhaustively list variants for common causes of differing terminology.

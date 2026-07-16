@@ -49,8 +49,10 @@ that couldn't be matched in \code{thesaurus}.}
 \item{coalesce}{If \code{TRUE} (the default), return only the closest matches in
 \code{x}. If \code{FALSE}, return all matches.}
 
-\item{...}{For \code{control_ci()} and \code{control_fuzzy}, other arguments passed to
-\code{control()}.}
+\item{...}{For \code{control_ci()} and \code{control_fuzzy()}, other arguments passed
+to \code{control()}. This includes fuzzy matching options (\code{fuzzy_boundary},
+\code{fuzzy_encoding}) and output options (\code{quiet}, \code{warn_unmatched},
+\code{coalesce}).}
 }
 \value{
 If \code{coalesce = TRUE} (the default), a vector the same length as \code{x} with
