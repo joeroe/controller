@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   controller: controller.html
-last_built: 2026-07-23T18:44Z
+last_built: 2026-07-23T18:45Z
 urls:
   reference: https://controller.joeroe.io/reference
   article: https://controller.joeroe.io/articles

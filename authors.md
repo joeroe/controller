@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/joeroe/controller/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/joeroe/controller/blob/v0.1.0/DESCRIPTION)
 
 Roe J (2026). *controller: Controlled Vocabularies*. R package version
 0.1.0, <https://controller.joeroe.io>.
