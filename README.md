@@ -8,9 +8,13 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/controller)](https://CRAN.R-project.org/package=controller)
 [![R-CMD-check](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joeroe/controller/actions/workflows/R-CMD-check.yaml)
 [![Test
 coverage](https://codecov.io/gh/joeroe/controller/graph/badge.svg)](https://app.codecov.io/gh/joeroe/controller)
+
+[![DOI](https://zenodo.org/badge/361749695.svg)](https://doi.org/10.5281/zenodo.21515711)
 <!-- badges: end -->
 
 **controller** is a collection of functions for working with controlled
