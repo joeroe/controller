@@ -15,6 +15,8 @@ status](https://www.r-pkg.org/badges/version/controller)](https://CRAN.R-project
 coverage](https://codecov.io/gh/joeroe/controller/graph/badge.svg)](https://app.codecov.io/gh/joeroe/controller)
 
 [![DOI](https://zenodo.org/badge/361749695.svg)](https://doi.org/10.5281/zenodo.21515711)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/controller)](https://cranlogs.r-pkg.org/)
 <!-- badges: end -->
 
 **controller** is a collection of functions for working with controlled
