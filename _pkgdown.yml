@@ -22,3 +22,8 @@ reference:
 - title: Datasets
 - contents:
   - colour_thesaurus
+
+news:
+  releases:
+  - text: "controller 0.1.0"
+    href: https://joeroe.io/2026/07/23/controller-0.1.0.html
