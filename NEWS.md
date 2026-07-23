@@ -1,6 +1,6 @@
-# controller 0.1.0
+# controller (development version)
 
-# controller 0.0.0.9000
+# controller 0.1.0
 
 * Adds `control()`, `control_ci()`, and `control_fuzzy()`
 * Adds `control_matches()` for inspecting how matches were made
