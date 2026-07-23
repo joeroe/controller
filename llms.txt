@@ -1,5 +1,7 @@
 # controller
 
+[![DOI](https://zenodo.org/badge/361749695.svg)](https://doi.org/10.5281/zenodo.21515711)
+
 **controller** is a collection of functions for working with controlled
 vocabularies in R. It introduces the
 [`control()`](https://controller.joeroe.io/reference/control.md) verb,
