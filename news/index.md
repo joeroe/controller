@@ -2,6 +2,8 @@
 
 ## controller 0.1.0
 
+CRAN release: 2026-07-23
+
 ## controller 0.0.0.9000
 
 - Adds [`control()`](https://controller.joeroe.io/reference/control.md),
